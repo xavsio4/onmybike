@@ -1,7 +1,7 @@
 version: '2'
 services:
-  lao-lumen:
-    container_name: lao-lumen
+  omb-lumen:
+    container_name: omb-lumen
     build:
       context: ./lumen
       dockerfile: Dockerfile
@@ -12,12 +12,12 @@ services:
       - ./../src:/var/www:cached
       - ./lumen/.data/logs:/var/log/nginx:delegated
     links:
-      - lao-database
+      - omb-database
     depends_on:
-      - lao-database
+      - omb-database
 
-  lao-database:
-    container_name: lao-database
+  omb-database:
+    container_name: omb-database
     build:
       context: ./database
       dockerfile: Dockerfile
@@ -25,8 +25,8 @@ services:
     ports:
       - "33066:3306"
     environment:
-      - MYSQL_DATABASE=homestead
-      - MYSQL_USER=homestead
+      - MYSQL_DATABASE=ombdb
+      - MYSQL_USER=ombdb
       - MYSQL_PASSWORD=secret
       - MYSQL_ROOT_PASSWORD=secret
     volumes:
@@ -35,4 +35,4 @@ services:
 networks:
   default:
     external:
-      name: "lao-network"
+      name: "omb-network"

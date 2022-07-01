@@ -8,11 +8,11 @@
       >
         <div class="w-full flex flex-row items-center justify-between py-6">
           <div>
-            <img
+            <!--- <img
               :src="require('../assets/img/logo/nefa.svg')"
               class="w-24 xl:w-28"
               alt="Nefa Logo"
-            />
+            /> -->
           </div>
           <button
             class="rounded-lg lg:hidden focus:outline-none focus:shadow-outline"
@@ -86,13 +86,13 @@
   </nav>
 </template>
 <script>
-  export default {
-    name: "BaseNavbar",
-    data() {
-      return {
-        open: false,
-        dropdownNavbar: false,
-      };
-    },
-  };
+export default {
+  name: "BaseNavbar",
+  data() {
+    return {
+      open: false,
+      dropdownNavbar: false,
+    };
+  },
+};
 </script>
