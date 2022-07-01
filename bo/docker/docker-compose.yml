@@ -1,0 +1,38 @@
+version: '2'
+services:
+  lao-lumen:
+    container_name: lao-lumen
+    build:
+      context: ./lumen
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "9000:80"
+    volumes:
+      - ./../src:/var/www:cached
+      - ./lumen/.data/logs:/var/log/nginx:delegated
+    links:
+      - lao-database
+    depends_on:
+      - lao-database
+
+  lao-database:
+    container_name: lao-database
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "33066:3306"
+    environment:
+      - MYSQL_DATABASE=homestead
+      - MYSQL_USER=homestead
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
+    volumes:
+      - ./database/.data/mysql:/var/lib/mysql:delegated
+
+networks:
+  default:
+    external:
+      name: "lao-network"

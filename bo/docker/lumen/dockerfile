@@ -1,0 +1,37 @@
+FROM php:7.1-fpm-jessie
+
+RUN docker-php-ext-install pdo_mysql bcmath mbstring sockets exif \
+    && apt-get update \
+    && apt-get install zip unzip
+
+# Install PHP Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php \
+    && rm composer-setup.php \
+    && mv composer.phar /usr/local/bin/composer
+
+RUN pecl install xdebug && \
+    docker-php-ext-enable xdebug
+
+RUN echo "deb http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list \
+    && echo "deb-src http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list \
+    && curl http://nginx.org/keys/nginx_signing.key | apt-key add - \
+    && apt-get update \
+    && apt-get install -y nginx \
+    && apt-get install -y libpng-dev libjpeg-dev libwebp-dev \
+    && apt-get install -y libav-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+# Forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/syslog
+
+WORKDIR /var/www/
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
