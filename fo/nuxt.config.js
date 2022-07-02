@@ -39,6 +39,7 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     '@nuxt/image',
+    '~/modules/directus',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -56,4 +57,13 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  directus: {
+    url: process.env.DIRECTUS_URL,
+    auth: {
+      email: process.env.DIRECTUS_EMAIL,
+      password: process.env.DIRECTUS_PASSWORD,
+      // token: process.env.DIRECTUS_STATIC_TOKEN,
+    },
+  },
 }

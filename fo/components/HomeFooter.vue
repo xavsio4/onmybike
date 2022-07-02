@@ -4,7 +4,8 @@
   >
     <div class="flex gap-1">
       <span>onmy.bike is produced by</span>
-      <img width="120" src="logo/mungvilla.svg" /> <span>&copy; 2022</span>
+      <img width="120" src="logo/mungvilla.svg" alt="Mungvilla" />
+      <span>&copy; 2022</span>
     </div>
   </div>
 </template>
