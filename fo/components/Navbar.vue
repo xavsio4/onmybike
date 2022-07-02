@@ -1,7 +1,7 @@
 <template>
   <nav id="navbar" class="relative z-10 w-full text-neutral-800">
     <div
-      class="flex flex-col max-w-screen-xl px-8 mx-auto lg:items-center lg:justify-between lg:flex-row py-4"
+      class="flex flex-col max-w-screen-xl px-8 mx-auto lg:items-center lg:justify-between lg:flex-row py-1"
     >
       <div
         class="flex flex-col lg:flex-row items-center space-x-4 xl:space-x-8"
@@ -10,7 +10,7 @@
           <div>
             <img
               src="logo/onmybike.svg"
-              class="w-20 xl:w-24"
+              class="w-16 xl:w-20"
               alt="On My Bike"
             />
           </div>
@@ -26,17 +26,14 @@
           :class="[open ? 'flex' : 'hidden lg:flex']"
           class="w-full h-auto flex flex-col flex-grow lg:items-center pb-4 lg:pb-0 lg:justify-end lg:flex-row origin-top duration-300 xl:space-x-2 space-y-3 lg:space-y-0"
         >
-          <NavLink name="Cryptocurrency" url="#" />
-          <NavLink name="Exchanges" url="#" />
-          <NavLink name="Watchlist" url="#" />
-          <NavLink name="NFT" url="#" />
-          <NavLink name="Portfolio" url="#" />
+          <button><span>Roadbook Maker</span></button>
+          <button><span>Explore Roadbooks</span></button>
           <li class="relative group">
             <button
               class="md:px-4 py-2 text-sm bg-transparent rounded-lg text-[#666666] hover:text-gray-900 focus:outline-none focus:shadow-outline flex items-center"
               @click="dropdownNavbar = !dropdownNavbar"
             >
-              <span>Products</span>
+              <span>Blog</span>
               <ChevronUpIcon v-if="dropdownNavbar" :size="16" />
               <ChevronDownIcon v-else :size="16" />
             </button>

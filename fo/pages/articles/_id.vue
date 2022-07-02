@@ -119,27 +119,27 @@
 </template>
 
 <script>
-import { formatRelativeTime } from "../../../shared/utils/format-relative-time";
+//import { formatRelativeTime } from '../../../shared/utils/format-relative-time'
 
 export default {
   async asyncData({ $directus, params, error }) {
-    const { id } = params;
+    const { id } = params
 
-    let article;
+    let article
     try {
-      article = await $directus.items("articles").readOne(id, {
-        fields: ["*", "author.avatar", "author.first_name", "author.last_name"]
-      });
+      article = await $directus.items('articles').readOne(id, {
+        fields: ['*', 'author.avatar', 'author.first_name', 'author.last_name'],
+      })
     } catch (err) {
-      return error({ statusCode: 404, message: "Article not found" });
+      return error({ statusCode: 404, message: 'Article not found' })
     }
 
     article = {
       ...article,
-      publish_date: formatRelativeTime(new Date(article.publish_date))
-    };
+      publish_date: new Date(article.publish_date),
+    }
 
-    return { article };
-  }
-};
+    return { article }
+  },
+}
 </script>
