@@ -11,17 +11,17 @@
           <div class="current-article__wrapperOuter">
             <div class="current-article__wrapperInner">
               <div class="current-article__authorImage">
-                <img
+                <!-- <img
                   :src="$assetURL(article.author.avatar)"
                   alt=""
                   loading="lazy"
-                />
+                />-->
               </div>
               <div>
                 <div class="current-article__authorName">
-                  {{
+                  <!-- {{
                     `${article.author.first_name} ${article.author.last_name}`
-                  }}
+                  }}-->
                 </div>
                 <div class="current-article__time">
                   {{ article.publish_date }}
@@ -68,7 +68,7 @@
             </ul>
           </div>
           <div class="current-article_coverImage">
-            <img :src="$assetURL(article.cover_image)" alt="" />
+            <img :src="article.featured_image" alt="" />
           </div>
         </div>
         <div class="current-article__body">
@@ -128,7 +128,8 @@ export default {
     let article
     try {
       article = await $directus.items('articles').readOne(id, {
-        fields: ['*', 'author.avatar', 'author.first_name', 'author.last_name'],
+        // fields: ['*', 'author.avatar', 'author.first_name', 'author.last_name'],
+        fields: ['*'],
       })
     } catch (err) {
       return error({ statusCode: 404, message: 'Article not found' })

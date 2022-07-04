@@ -1,11 +1,12 @@
 <template>
   <div>
     <Navbar />
-    <Tutorial />
+    <ArticlePreview />
     <HomeFooter />
   </div>
 </template>
 
 <script>
-export default {}
+import ArticlePreview from '~/components/ArticlePreview.vue'
+export default { components: { ArticlePreview } }
 </script>
